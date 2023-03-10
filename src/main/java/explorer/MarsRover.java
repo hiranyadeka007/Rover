@@ -14,9 +14,9 @@ public class MarsRover {
         String commands = "MMRMMRMRRM";
 
         String[] positions = currentPosition.split(" ");
-        xCoordinate = Integer.valueOf(positions[0]);
-        yCoordinate = Integer.valueOf(positions[1]);
-        direction = positions[2];
+        setxCoordinate(Integer.valueOf(positions[0]));
+        setyCoordinate(Integer.valueOf(positions[1]));
+        setDirection(positions[2]);
 
         for (char command : commands.toCharArray()) {
             rove(command);
