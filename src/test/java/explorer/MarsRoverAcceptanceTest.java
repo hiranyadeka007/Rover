@@ -15,8 +15,8 @@ public class MarsRoverAcceptanceTest {
     @Test
     public void roverNavigatesThePlateau(){
         //Given
-        MarsRover.setX(3);
-        MarsRover.setY(3);
+        MarsRover.setxCoordinate(3);
+        MarsRover.setyCoordinate(3);
         MarsRover.setDirection("E");
 
         //When
@@ -26,8 +26,8 @@ public class MarsRoverAcceptanceTest {
         }
 
         //Then
-        assertEquals(5,MarsRover.getX());
-        assertEquals(1,MarsRover.getY());
+        assertEquals(5,MarsRover.getxCoordinate());
+        assertEquals(1,MarsRover.getyCoordinate());
         assertEquals("E",MarsRover.getDirection());
     }
 }

@@ -2,54 +2,32 @@ package explorer;
 
 import java.util.logging.Logger;
 
-
-
-/**
- * This program implements a mission critical application that God alone know its real intent.
- * It feeds me, a sole reason for me to stick to this project. Long live such guess-good-for-what-projects.
- *
- * @author  Chitti Bush
- * @version 1.0
- * @since   2000-03-31
- */
-
 public class MarsRover {
-    private static int x = 0; //Position on x-axis
-    private static int y = 0; //Position on y-axis
-    private static String direction = ""; //Direction the rover is facing
-
-    //Logger to log information
+    private static int xCoordinate = 0;
+    private static int yCoordinate = 0;
+    private static String direction = "";
     private Logger logger = Logger.getLogger("MarsRoboRover") ;
 
     public static void main(String[] args) {
-        //Other Test Inputs
-//		String currentPosition = "1 2 N";
-//		String commands = "LMLMLMLMM";
 
         String currentPosition = "3 3 E";
         String commands = "MMRMMRMRRM";
 
         String[] positions = currentPosition.split(" ");
-        x = Integer.valueOf(positions[0]);
-        y = Integer.valueOf(positions[1]);
+        xCoordinate = Integer.valueOf(positions[0]);
+        yCoordinate = Integer.valueOf(positions[1]);
         direction = positions[2];
 
         for (char command : commands.toCharArray()) {
             rove(command);
         }
 
-        //Output Status and Result
         System.out.println("currentPosition..." + currentPosition);
         System.out.println("commands..." + commands);
-        System.out.println("newPosition..." + x + " " + y + " " + direction);
+        System.out.println("newPosition..." + xCoordinate + " " + yCoordinate + " " + direction);
     }
 
-    /**
-     * All logic for movement is in this method
-     * @param command char
-     */
      static void rove(char command) {
-//		System.out.println("Start....." + x + " " + y + " " + direction + " " + command);
         if (direction.equalsIgnoreCase("N")) {
             switch (command) {
                 case 'L':
@@ -59,7 +37,7 @@ public class MarsRover {
                     direction = "E";
                     break;
                 case 'M':
-                    y++;
+                    yCoordinate++;
                     break;
             }
         } else if (direction.equalsIgnoreCase("E")) {
@@ -71,7 +49,7 @@ public class MarsRover {
                     direction = "S";
                     break;
                 case 'M':
-                    x++;
+                    xCoordinate++;
                     break;
             }
         } else if (direction.equalsIgnoreCase("S")) {
@@ -83,7 +61,7 @@ public class MarsRover {
                     direction = "W";
                     break;
                 case 'M':
-                    y--;
+                    yCoordinate--;
                     break;
             }
         } else if (direction.equalsIgnoreCase("W")) {
@@ -95,32 +73,30 @@ public class MarsRover {
                     direction = "N";
                     break;
                 case 'M':
-                    x--;
+                    xCoordinate--;
                     break;
             }
         }
-
-//		System.out.println("End....." + x + " " + y + " " + direction + " " + command);
     }
 
     public static String location() {
-        return "[" + x + ", " + "y" + ", " + direction + "]";
+        return "[" + xCoordinate + ", " + "y" + ", " + direction + "]";
     }
 
-    public static int getX() {
-        return x;
+    public static int getxCoordinate() {
+        return xCoordinate;
     }
 
-    public static void setX(int x) {
-        MarsRover.x = x;
+    public static void setxCoordinate(int xCoordinate) {
+        MarsRover.xCoordinate = xCoordinate;
     }
 
-    public static int getY() {
-        return y;
+    public static int getyCoordinate() {
+        return yCoordinate;
     }
 
-    public static void setY(int y) {
-        MarsRover.y = y;
+    public static void setyCoordinate(int yCoordinate) {
+        MarsRover.yCoordinate = yCoordinate;
     }
 
     public static String getDirection() {
