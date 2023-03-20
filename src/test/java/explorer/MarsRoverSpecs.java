@@ -8,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // Inefficient Naming(Eg: dir) - Done
 // Remove commented code(Dead code) - Done
 // Dead code in MarsRover class(location , getlogger, setlogger) - Inprogress
-// Large Class/ Long Method - Inprogress
+// Large Class - Done
+// Long Method - Inprogress
 // Magic Constants
 // Getters and setters
 // Data clump (Eg, x,y and dir variables)
