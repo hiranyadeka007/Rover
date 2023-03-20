@@ -16,19 +16,17 @@ public class MarsRoverAcceptanceTest {
     @Test
     public void roverNavigatesThePlateau(){
         //Given
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
-        MarsRover.setDirection(Direction.EAST);
+        MarsRover marsRover = new MarsRover(3,3,Direction.EAST);
 
         //When
         String commands = "MMRMMRMRRM";
         for (char command : commands.toCharArray()) {
-            MarsRover.rove(command);
+            marsRover.rove(command);
         }
 
         //Then
-        assertEquals(5,MarsRover.getxCoordinate());
-        assertEquals(1,MarsRover.getyCoordinate());
-        assertEquals("E",MarsRover.getDirection());
+        assertEquals(5,marsRover.getxCoordinate());
+        assertEquals(1,marsRover.getyCoordinate());
+        assertEquals("E",marsRover.getDirection());
     }
 }

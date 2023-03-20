@@ -12,16 +12,14 @@ public class RoverRunner {
             String.valueOf(MarsRover.MOVE), String.valueOf(MarsRover.RIGHT))); //"MMRMMRMRRM";
 
         String[] positions = currentPosition.split(" ");
-        MarsRover.setxCoordinate(Integer.valueOf(positions[0]));
-        MarsRover.setyCoordinate(Integer.valueOf(positions[1]));
-        MarsRover.setDirection(Direction.from(positions[2]));
+        MarsRover marsRover = new MarsRover(Integer.valueOf(positions[0]),Integer.valueOf(positions[1]),Direction.from(positions[2]));
 
         for (char command : commands.toCharArray()) {
-            MarsRover.rove(command);
+            marsRover.rove(command);
         }
 
         System.out.println("currentPosition..." + currentPosition);
         System.out.println("commands..." + commands);
-        System.out.println("newPosition..." + MarsRover.getxCoordinate() + " " + MarsRover.getyCoordinate() + " " + MarsRover.getDirection());
+        System.out.println("newPosition..." + marsRover.getxCoordinate() + " " + marsRover.getyCoordinate() + " " + marsRover.getDirection());
     }
 }

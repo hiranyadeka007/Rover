@@ -8,16 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Inefficient Naming(Eg: dir) - Done
 // Remove commented code(Dead code) - Done
-// Dead code in MarsRover class(location , getlogger, setlogger) - Inprogress
+// Dead code in MarsRover class(location , getlogger, setlogger) - done
 // Large Class - Done
 // Long Method - Inprogress-parked
-// Magic Constants - Partial done
+// Magic Constants -  done
 // Getters and setters
 // Data clump (Eg, x,y and dir variables)
 // Subtle duplication in Rove method
 // Duplication of switch case(Blatent duplication)
 // Switch case in Rove method
-// static cling
+// static cling - done
 // Code duplication on code testing Rove functionality
 
 
@@ -25,168 +25,131 @@ public class MarsRoverSpecs {
     @Test
     public void facingNorthTurningLeftHeadsToWest(){
         //Given
-        MarsRover.setDirection(Direction.NORTH);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.NORTH, 3, 3);
         //When
-        MarsRover.rove('L');
+        marsRover.rove('L');
         //Then
-        assertEquals("W",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("W", 3, 3, marsRover );
+    }
+
+    private void thenMarsRoverShouldBeAt(String direction, int xCoordinate, int yCoordinate, MarsRover marsRover) {
+        assertEquals(direction,marsRover.getDirection());
+        assertEquals(xCoordinate,marsRover.getxCoordinate());
+        assertEquals(yCoordinate,marsRover.getyCoordinate());
+    }
+
+    private MarsRover marsRoverIsAt(Direction direction, int xCoordinate, int yCoordinate) {
+       return new MarsRover(xCoordinate,yCoordinate, direction);
     }
 
     @Test
     public void facingNorthTurningRightHeadsToEast(){
         //Given
-        MarsRover.setDirection(Direction.NORTH);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.NORTH, 3, 3);
         //When
-        MarsRover.rove('R');
+        marsRover.rove('R');
         //Then
-        assertEquals("E",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("E",3,3,marsRover);
     }
 
     @Test
     public void facingNorthMovingForwardOneGridPointInNorth(){
         //Given
-        MarsRover.setDirection(Direction.NORTH);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.NORTH,3,3);
         //When
-        MarsRover.rove('M');
+        marsRover.rove('M');
         //Then
-        assertEquals("N",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(4,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("N",3,4,marsRover);
+
     }
 
     @Test
     public void facingEastTurningLeftHeadsToNorth(){
         //Given
-        MarsRover.setDirection(Direction.EAST);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.EAST,3,3);
         //When
-        MarsRover.rove('L');
+        marsRover.rove('L');
         //Then
-        assertEquals("N",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("N",3,3,marsRover);
     }
 
     @Test
     public void facingEastTurningRightHeadsToSouth(){
         //Given
-        MarsRover.setDirection(Direction.EAST);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.EAST,3,3);
         //When
-        MarsRover.rove('R');
+        marsRover.rove('R');
         //Then
-        assertEquals("S",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("S",3,3,marsRover);
     }
 
     @Test
     public void facingEastMovesForwardOneGridPointInEast(){
         //Given
-        MarsRover.setDirection(Direction.EAST);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.EAST,3,3);
         //When
-        MarsRover.rove('M');
+        marsRover.rove('M');
         //Then
-        assertEquals("E",MarsRover.getDirection());
-        assertEquals(4,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("E",4,3,marsRover);
     }
 
     @Test
     public void facingSouthTurningLeftHeadsToEast(){
         //Given
-        MarsRover.setDirection(Direction.SOUTH);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.SOUTH,3,3);
         //When
-        MarsRover.rove('L');
+        marsRover.rove('L');
         //Then
-        assertEquals("E",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("E",3,3,marsRover);
     }
 
     @Test
     public void facingSouthTurningRightHeadsToWest(){
         //Given
-        MarsRover.setDirection(Direction.SOUTH);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.SOUTH,3,3);
         //When
-        MarsRover.rove('R');
+        marsRover.rove('R');
         //Then
-        assertEquals("W",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("W",3,3,marsRover);
     }
 
     @Test
     public void facingSouthMovesBackWardOneGridPointInSouth(){
         //Given
-        MarsRover.setDirection(Direction.SOUTH);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.SOUTH,3,3);
         //When
-        MarsRover.rove('M');
+        marsRover.rove('M');
         //Then
-        assertEquals("S",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(2,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("S",3,2,marsRover);
     }
 
     @Test
     public void facingWestTurningLeftHeadsToNorth(){
         //Given
-        MarsRover.setDirection(Direction.WEST);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.WEST,3,3);
         //When
-        MarsRover.rove('L');
+        marsRover.rove('L');
         //Then
-        assertEquals("S",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("S",3,3,marsRover);
     }
 
     @Test
     public void facingWestTurningRightHeadsToNorth(){
         //Given
-        MarsRover.setDirection(Direction.WEST);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.WEST,3,3);
         //When
-        MarsRover.rove('R');
+        marsRover.rove('R');
         //Then
-        assertEquals("N",MarsRover.getDirection());
-        assertEquals(3,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("N",3,3,marsRover);
     }
 
     @Test
     public void facingWestMovesBackWardOneGridPointInNorth(){
         //Given
-        MarsRover.setDirection(Direction.WEST);
-        MarsRover.setxCoordinate(3);
-        MarsRover.setyCoordinate(3);
+        MarsRover marsRover = marsRoverIsAt(Direction.WEST,3,3);
         //When
-        MarsRover.rove('M');
+        marsRover.rove('M');
         //Then
-        assertEquals("W",MarsRover.getDirection());
-        assertEquals(2,MarsRover.getxCoordinate());
-        assertEquals(3,MarsRover.getyCoordinate());
+        thenMarsRoverShouldBeAt("W",2,3,marsRover);
     }
 }

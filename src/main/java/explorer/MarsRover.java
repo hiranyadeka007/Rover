@@ -4,6 +4,12 @@ import java.util.Map;
 
 public class MarsRover {
 
+    public MarsRover(int xCoordinate, int yCoordinate, Direction direction) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+        this.direction = direction;
+    }
+
     public enum Direction {
         NORTH("N"),
         WEST("W"),
@@ -29,11 +35,11 @@ public class MarsRover {
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
     public static final char MOVE = 'M';
-    private static int xCoordinate = 0;
-    private static int yCoordinate = 0;
-    private static Direction direction = Direction.NOTHING;
+    private  int xCoordinate = 0;
+    private  int yCoordinate = 0;
+    private  Direction direction = Direction.NOTHING;
 
-    static void rove(char command) {
+    void rove(char command) {
         if (direction == Direction.NORTH) {
             switch (command) {
                 case LEFT:
@@ -85,32 +91,29 @@ public class MarsRover {
         }
     }
 
-    public static String location() {
-        return "[" + xCoordinate + ", " + "y" + ", " + direction + "]";
+
+    public  int getxCoordinate() {
+        return this.xCoordinate;
     }
 
-    public static int getxCoordinate() {
-        return xCoordinate;
+    public void setxCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
     }
 
-    public static void setxCoordinate(int xCoordinate) {
-        MarsRover.xCoordinate = xCoordinate;
+    public  int getyCoordinate() {
+        return this.yCoordinate;
     }
 
-    public static int getyCoordinate() {
-        return yCoordinate;
+    public  void setyCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
     }
 
-    public static void setyCoordinate(int yCoordinate) {
-        MarsRover.yCoordinate = yCoordinate;
+    public String getDirection() {
+        return this.direction.toString();
     }
 
-    public static String getDirection() {
-        return direction.toString();
-    }
-
-    public static void setDirection(Direction direction) {
-        MarsRover.direction = direction;
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
 }
