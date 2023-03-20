@@ -8,26 +8,7 @@ public class MarsRover {
     private static String direction = "";
     private Logger logger = Logger.getLogger("MarsRoboRover") ;
 
-    public static void main(String[] args) {
-
-        String currentPosition = "3 3 E";
-        String commands = "MMRMMRMRRM";
-
-        String[] positions = currentPosition.split(" ");
-        setxCoordinate(Integer.valueOf(positions[0]));
-        setyCoordinate(Integer.valueOf(positions[1]));
-        setDirection(positions[2]);
-
-        for (char command : commands.toCharArray()) {
-            rove(command);
-        }
-
-        System.out.println("currentPosition..." + currentPosition);
-        System.out.println("commands..." + commands);
-        System.out.println("newPosition..." + xCoordinate + " " + yCoordinate + " " + direction);
-    }
-
-     static void rove(char command) {
+    static void rove(char command) {
         if (direction.equalsIgnoreCase("N")) {
             switch (command) {
                 case 'L':
