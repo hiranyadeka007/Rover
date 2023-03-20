@@ -1,58 +1,84 @@
 package explorer;
 
-import java.util.logging.Logger;
+import java.util.Map;
 
 public class MarsRover {
+
+    public enum Direction {
+        NORTH("N"),
+        WEST("W"),
+        EAST("E"),
+        SOUTH("S"),
+        NOTHING("");
+        private String value;
+
+        Direction(String value) {
+            this.value = value;
+        }
+        @Override
+        public String toString() {
+            return value;
+        }
+
+        private static final Map<String, Direction> directions = Map.of("W", WEST, "N", NORTH, "S", SOUTH, "E", EAST);
+        public static Direction from(String value) {
+            return directions.getOrDefault(value, NOTHING);
+        }
+    }
+
+    public static final char LEFT = 'L';
+    public static final char RIGHT = 'R';
+    public static final char MOVE = 'M';
     private static int xCoordinate = 0;
     private static int yCoordinate = 0;
-    private static String direction = "";
+    private static Direction direction = Direction.NOTHING;
 
     static void rove(char command) {
-        if (direction.equalsIgnoreCase("N")) {
+        if (direction == Direction.NORTH) {
             switch (command) {
-                case 'L':
-                    direction = "W";
+                case LEFT:
+                    direction = Direction.WEST;
                     break;
-                case 'R':
-                    direction = "E";
+                case RIGHT:
+                    direction = Direction.EAST;
                     break;
-                case 'M':
+                case MOVE:
                     yCoordinate++;
                     break;
             }
-        } else if (direction.equalsIgnoreCase("E")) {
+        } else if (direction == Direction.EAST) {
             switch (command) {
-                case 'L':
-                    direction = "N";
+                case LEFT:
+                    direction = Direction.NORTH;
                     break;
-                case 'R':
-                    direction = "S";
+                case RIGHT:
+                    direction = Direction.SOUTH;
                     break;
-                case 'M':
+                case MOVE:
                     xCoordinate++;
                     break;
             }
-        } else if (direction.equalsIgnoreCase("S")) {
+        } else if (direction == Direction.SOUTH) {
             switch (command) {
-                case 'L':
-                    direction = "E";
+                case LEFT:
+                    direction = Direction.EAST;
                     break;
-                case 'R':
-                    direction = "W";
+                case RIGHT:
+                    direction = Direction.WEST;
                     break;
-                case 'M':
+                case MOVE:
                     yCoordinate--;
                     break;
             }
-        } else if (direction.equalsIgnoreCase("W")) {
+        } else if (direction == Direction.WEST) {
             switch (command) {
-                case 'L':
-                    direction = "S";
+                case LEFT:
+                    direction = Direction.SOUTH;
                     break;
-                case 'R':
-                    direction = "N";
+                case RIGHT:
+                    direction = Direction.NORTH;
                     break;
-                case 'M':
+                case MOVE:
                     xCoordinate--;
                     break;
             }
@@ -80,10 +106,10 @@ public class MarsRover {
     }
 
     public static String getDirection() {
-        return direction;
+        return direction.toString();
     }
 
-    public static void setDirection(String direction) {
+    public static void setDirection(Direction direction) {
         MarsRover.direction = direction;
     }
 

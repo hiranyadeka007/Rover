@@ -1,5 +1,6 @@
 package explorer;
 
+import explorer.MarsRover.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // Dead code in MarsRover class(location , getlogger, setlogger) - Inprogress
 // Large Class - Done
 // Long Method - Inprogress-parked
-// Magic Constants -
+// Magic Constants - Partial done
 // Getters and setters
 // Data clump (Eg, x,y and dir variables)
 // Subtle duplication in Rove method
@@ -24,7 +25,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingNorthTurningLeftHeadsToWest(){
         //Given
-        MarsRover.setDirection("N");
+        MarsRover.setDirection(Direction.NORTH);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -38,7 +39,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingNorthTurningRightHeadsToEast(){
         //Given
-        MarsRover.setDirection("N");
+        MarsRover.setDirection(Direction.NORTH);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -52,7 +53,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingNorthMovingForwardOneGridPointInNorth(){
         //Given
-        MarsRover.setDirection("N");
+        MarsRover.setDirection(Direction.NORTH);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -66,7 +67,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingEastTurningLeftHeadsToNorth(){
         //Given
-        MarsRover.setDirection("E");
+        MarsRover.setDirection(Direction.EAST);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -80,7 +81,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingEastTurningRightHeadsToSouth(){
         //Given
-        MarsRover.setDirection("E");
+        MarsRover.setDirection(Direction.EAST);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -94,7 +95,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingEastMovesForwardOneGridPointInEast(){
         //Given
-        MarsRover.setDirection("E");
+        MarsRover.setDirection(Direction.EAST);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -108,7 +109,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingSouthTurningLeftHeadsToEast(){
         //Given
-        MarsRover.setDirection("S");
+        MarsRover.setDirection(Direction.SOUTH);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -122,7 +123,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingSouthTurningRightHeadsToWest(){
         //Given
-        MarsRover.setDirection("S");
+        MarsRover.setDirection(Direction.SOUTH);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -136,7 +137,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingSouthMovesBackWardOneGridPointInSouth(){
         //Given
-        MarsRover.setDirection("S");
+        MarsRover.setDirection(Direction.SOUTH);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -150,7 +151,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingWestTurningLeftHeadsToNorth(){
         //Given
-        MarsRover.setDirection("W");
+        MarsRover.setDirection(Direction.WEST);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -164,7 +165,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingWestTurningRightHeadsToNorth(){
         //Given
-        MarsRover.setDirection("W");
+        MarsRover.setDirection(Direction.WEST);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When
@@ -178,7 +179,7 @@ public class MarsRoverSpecs {
     @Test
     public void facingWestMovesBackWardOneGridPointInNorth(){
         //Given
-        MarsRover.setDirection("W");
+        MarsRover.setDirection(Direction.WEST);
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
         //When

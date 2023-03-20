@@ -1,5 +1,6 @@
 package explorer;
 
+import explorer.MarsRover.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +18,7 @@ public class MarsRoverAcceptanceTest {
         //Given
         MarsRover.setxCoordinate(3);
         MarsRover.setyCoordinate(3);
-        MarsRover.setDirection("E");
+        MarsRover.setDirection(Direction.EAST);
 
         //When
         String commands = "MMRMMRMRRM";
