@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // Remove commented code(Dead code) - Done
 // Dead code in MarsRover class(location , getlogger, setlogger) - Inprogress
 // Large Class - Done
-// Long Method - Inprogress
-// Magic Constants
+// Long Method - Inprogress-parked
+// Magic Constants -
 // Getters and setters
 // Data clump (Eg, x,y and dir variables)
 // Subtle duplication in Rove method

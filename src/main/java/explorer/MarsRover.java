@@ -6,7 +6,6 @@ public class MarsRover {
     private static int xCoordinate = 0;
     private static int yCoordinate = 0;
     private static String direction = "";
-    private Logger logger = Logger.getLogger("MarsRoboRover") ;
 
     static void rove(char command) {
         if (direction.equalsIgnoreCase("N")) {
@@ -88,11 +87,4 @@ public class MarsRover {
         MarsRover.direction = direction;
     }
 
-    public Logger getLogger() {
-        return logger;
-    }
-
-    public void setLogger(Logger logger) {
-        this.logger = logger;
-    }
 }
