@@ -1,6 +1,5 @@
 package explorer;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +31,38 @@ public class MarsRover {
         public static Direction from(String value) {
             return directions.getOrDefault(value, NOTHING);
         }
+
+        private Direction turnRightFromWest() {
+            return NORTH;
+        }
+
+        private Direction turnLeftFromWest() {
+            return SOUTH;
+        }
+
+        private Direction turnRightFromEast() {
+            return SOUTH;
+        }
+
+        private Direction turnLeftFromEast() {
+            return NORTH;
+        }
+
+        private Direction turnRightFromNorth() {
+            return EAST;
+        }
+
+        private Direction turnLeftFromNoth() {
+            return WEST;
+        }
+
+        private Direction turnRightFromSouth() {
+            return WEST;
+        }
+
+        private Direction turnLeftFromSouth() {
+            return EAST;
+        }
     }
 
     public static final char LEFT = 'L';
@@ -45,10 +76,10 @@ public class MarsRover {
         if (direction == Direction.NORTH) {
             switch (command) {
                 case LEFT:
-                    direction = Direction.WEST;
+                    direction = Direction.NORTH.turnLeftFromNoth();
                     break;
                 case RIGHT:
-                    direction = Direction.EAST;
+                    direction = Direction.NORTH.turnRightFromNorth();
                     break;
                 case MOVE:
                     yCoordinate++;
@@ -57,10 +88,10 @@ public class MarsRover {
         } else if (direction == Direction.EAST) {
             switch (command) {
                 case LEFT:
-                    direction = Direction.NORTH;
+                    direction = Direction.EAST.turnLeftFromEast();
                     break;
                 case RIGHT:
-                    direction = Direction.SOUTH;
+                    direction = Direction.EAST.turnRightFromEast();
                     break;
                 case MOVE:
                     xCoordinate++;
@@ -69,10 +100,10 @@ public class MarsRover {
         } else if (direction == Direction.SOUTH) {
             switch (command) {
                 case LEFT:
-                    direction = Direction.EAST;
+                    direction = Direction.SOUTH.turnLeftFromSouth();
                     break;
                 case RIGHT:
-                    direction = Direction.WEST;
+                    direction = Direction.SOUTH.turnRightFromSouth();
                     break;
                 case MOVE:
                     yCoordinate--;
@@ -81,10 +112,10 @@ public class MarsRover {
         } else if (direction == Direction.WEST) {
             switch (command) {
                 case LEFT:
-                    direction = Direction.SOUTH;
+                    direction = Direction.WEST.turnLeftFromWest();
                     break;
                 case RIGHT:
-                    direction = Direction.NORTH;
+                    direction = Direction.WEST.turnRightFromWest();
                     break;
                 case MOVE:
                     xCoordinate--;
