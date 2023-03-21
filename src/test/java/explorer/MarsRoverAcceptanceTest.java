@@ -3,6 +3,9 @@ package explorer;
 import explorer.MarsRover.Direction;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MarsRoverAcceptanceTest {
@@ -20,13 +23,14 @@ public class MarsRoverAcceptanceTest {
 
         //When
         String commands = "MMRMMRMRRM";
+        List<?> position=new ArrayList<>();
         for (char command : commands.toCharArray()) {
-            marsRover.rove(command);
+            position=marsRover.rove(command);
         }
 
         //Then
-        assertEquals(5,marsRover.getxCoordinate());
-        assertEquals(1,marsRover.getyCoordinate());
-        assertEquals("E",marsRover.getDirection());
+        assertEquals(5,position.get(0));
+        assertEquals(1,position.get(1));
+        assertEquals("E",position.get(2));
     }
 }

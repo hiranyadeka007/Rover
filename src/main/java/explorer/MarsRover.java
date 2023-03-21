@@ -1,5 +1,7 @@
 package explorer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MarsRover {
@@ -39,7 +41,7 @@ public class MarsRover {
     private  int yCoordinate = 0;
     private  Direction direction = Direction.NOTHING;
 
-    void rove(char command) {
+    List<?> rove(char command) {
         if (direction == Direction.NORTH) {
             switch (command) {
                 case LEFT:
@@ -89,31 +91,10 @@ public class MarsRover {
                     break;
             }
         }
+
+      return   List.of(xCoordinate,yCoordinate,direction.value);
+
     }
 
-
-    public  int getxCoordinate() {
-        return this.xCoordinate;
-    }
-
-    public void setxCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public  int getyCoordinate() {
-        return this.yCoordinate;
-    }
-
-    public  void setyCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
-    }
-
-    public String getDirection() {
-        return this.direction.toString();
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
 
 }
