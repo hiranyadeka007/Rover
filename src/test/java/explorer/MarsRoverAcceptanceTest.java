@@ -19,7 +19,7 @@ public class MarsRoverAcceptanceTest {
     @Test
     public void roverNavigatesThePlateau(){
         //Given
-        MarsRover marsRover = new MarsRover(3,3,Direction.EAST);
+        MarsRover marsRover = new MarsRover(new Point(3, 3),Direction.EAST);
 
         //When
         String commands = "MMRMMRMRRM";

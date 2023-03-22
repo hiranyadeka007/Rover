@@ -41,7 +41,7 @@ public class MarsRoverSpecs {
     }
 
     private MarsRover marsRoverIsAt(Direction direction, int xCoordinate, int yCoordinate) {
-       return new MarsRover(xCoordinate,yCoordinate, direction);
+        return new MarsRover(new Point(xCoordinate, yCoordinate), direction);
     }
 
     @Test

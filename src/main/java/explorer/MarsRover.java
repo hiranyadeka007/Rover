@@ -1,6 +1,5 @@
 package explorer;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +7,12 @@ import java.util.Map;
 public class MarsRover {
 
     public MarsRover(int xCoordinate, int yCoordinate, Direction direction) {
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+        this.direction = direction;
+        this.position = new Point(xCoordinate, yCoordinate);
+    }
+
+    public MarsRover(Point position, Direction direction) {
+        this.position = position;
         this.direction = direction;
     }
 
@@ -21,11 +24,11 @@ public class MarsRover {
         SOUTH("S"),
         NOTHING("");
         private String value;
-        private static final Map<Direction, List<Direction>> compass = new HashMap<Direction, List<Direction>>(){{
-            put(NORTH, List.of(WEST, EAST));
-            put(SOUTH, List.of(EAST, WEST));
-            put(EAST, List.of(NORTH, SOUTH));
-            put(WEST, List.of(SOUTH, NORTH));
+        private static final Map<Direction, List<?>> compass = new HashMap<Direction, List<?>>(){{
+            put(NORTH, List.of(WEST, EAST, List.of(0, 1)));
+            put(SOUTH, List.of(EAST, WEST, List.of(0, -1)));
+            put(EAST, List.of(NORTH, SOUTH, List.of(1, 0)));
+            put(WEST, List.of(SOUTH, NORTH, List.of(-1, 0)));
             put(NOTHING, List.of(NOTHING, NOTHING));
         }};
 
@@ -34,12 +37,18 @@ public class MarsRover {
         }
 
         public Direction turnLeft(){
-            return compass.get(this).get(0);
+            return (Direction) compass.get(this).get(0);
         }
 
         public Direction turnRight(){
-            return compass.get(this).get(1);
+            return (Direction) compass.get(this).get(1);
         }
+
+        public List<Integer> deltas(){
+           return  (List<Integer>) compass.get(this).get(2);
+        }
+
+
 
         @Override
         public String toString() {
@@ -55,8 +64,7 @@ public class MarsRover {
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
     public static final char MOVE = 'M';
-    private  int xCoordinate = 0;
-    private  int yCoordinate = 0;
+    private Point position;
     private  Direction direction = Direction.NOTHING;
 
     List<?> rove(char command) {
@@ -67,45 +75,14 @@ public class MarsRover {
             case RIGHT:
                 direction = direction.turnRight();
                 break;
-        }
-        if (direction == Direction.NORTH) {
-            switch (command) {
-                case MOVE:
-                    xCoordinate = move(xCoordinate, 0);
-                    yCoordinate = move(yCoordinate, 1);
-                    // TODO : Abstraction in progress
-                    new Point(xCoordinate, yCoordinate);
-                    break;
-            }
-        } else if (direction == Direction.EAST) {
-            switch (command) {
-                case MOVE:
-                    xCoordinate = move(xCoordinate, 1);
-                    yCoordinate = move(yCoordinate, 0);
-                    break;
-            }
-        } else if (direction == Direction.SOUTH) {
-            switch (command) {
-                case MOVE:
-                    xCoordinate = move(xCoordinate, 0);
-                    yCoordinate = move(yCoordinate, -1);
-                    break;
-            }
-        } else if (direction == Direction.WEST) {
-            switch (command) {
-                case MOVE:
-                    xCoordinate = move(xCoordinate, -1);
-                    yCoordinate = move(yCoordinate, 0);
-                    break;
-            }
+            case MOVE:
+                List<Integer> deltas = direction.deltas();
+                position.translate(deltas.get(0), deltas.get(1));
+                break;
         }
 
-      return   List.of(xCoordinate,yCoordinate,direction.value);
+      return   List.of(position.getxCoordinate(),position.getyCoordinate(),direction.value);
 
-    }
-
-    private int move(int coordinate, int step){
-        return coordinate+step;
     }
 
 
