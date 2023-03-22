@@ -6,18 +6,12 @@ import java.util.Map;
 
 public class MarsRover {
 
-    public MarsRover(int xCoordinate, int yCoordinate, Direction direction) {
-        this.direction = direction;
-        this.position = new Point(xCoordinate, yCoordinate);
-    }
-
     public MarsRover(Point position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
 
     public enum Direction {
-
         NORTH("N"),
         WEST("W"),
         EAST("E"),
@@ -65,7 +59,7 @@ public class MarsRover {
     public static final char RIGHT = 'R';
     public static final char MOVE = 'M';
     private Point position;
-    private  Direction direction = Direction.NOTHING;
+    private  Direction direction;
 
     List<?> rove(char command) {
         switch (command) {

@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Inefficient Naming(Eg: dir) - Done
 // Remove commented code(Dead code) - Done
-// Dead code in MarsRover class(location , getlogger, setlogger) - done
+// Dead code in MarsRover class(location , getlogger, setlogger) - Done
 // Large Class - Done
-// Long Method - Inprogress-parked
-// Magic Constants -  done
-// Getters and setters -done
-// Data clump (Eg, x,y and dir variables)
-// Subtle duplication in Rove method
-// Duplication of switch case(Blatent duplication)
-// Switch case in Rove method
-// static cling - done
-// Code duplication on code testing Rove functionality
+// Long Method - Done
+// Magic Constants -  Done
+// Getters and setters -Done
+// Data clump (Eg, x,y and dir variables) - Done
+// Subtle duplication in Rove method - Done
+// Duplication of switch case(Blatent duplication) - Done
+// Switch case in Rove method - Done
+// static cling - Done
+// Code duplication on code testing Rove functionality - Done
 
 
 public class MarsRoverSpecs {

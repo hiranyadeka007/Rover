@@ -14,7 +14,7 @@ public class RoverRunner {
             String.valueOf(MarsRover.MOVE), String.valueOf(MarsRover.RIGHT))); //"MMRMMRMRRM";
 
         String[] positions = currentPosition.split(" ");
-        MarsRover marsRover = new MarsRover(Integer.valueOf(positions[0]),Integer.valueOf(positions[1]),Direction.from(positions[2]));
+        MarsRover marsRover = new MarsRover(new Point(Integer.valueOf(positions[0]),Integer.valueOf(positions[1])),Direction.from(positions[2]));
 
         List<?> position=new ArrayList<>();
         for (char command : commands.toCharArray()) {
