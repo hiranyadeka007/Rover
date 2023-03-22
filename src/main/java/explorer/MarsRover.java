@@ -1,5 +1,7 @@
 package explorer;
 
+import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,59 +14,32 @@ public class MarsRover {
     }
 
     public enum Direction {
-        NORTH("N") {
-            Direction turnRight() {
-                return EAST;
-            }
 
-            Direction turnLeft() {
-                return WEST;
-            }
-        },
-        WEST("W") {
-            Direction turnRight() {
-                return NORTH;
-            }
-
-            Direction turnLeft() {
-                return SOUTH;
-            }
-        },
-        EAST("E") {
-            Direction turnRight() {
-                return SOUTH;
-            }
-
-            Direction turnLeft() {
-                return NORTH;
-            }
-        },
-        SOUTH("S") {
-            Direction turnRight() {
-                return WEST;
-            }
-
-            Direction turnLeft() {
-                return EAST;
-            }
-        },
-        NOTHING("") {
-            Direction turnRight() {
-                return NOTHING;
-            }
-
-            Direction turnLeft() {
-                return NOTHING;
-            }
-        };
+        NORTH("N"),
+        WEST("W"),
+        EAST("E"),
+        SOUTH("S"),
+        NOTHING("");
         private String value;
+        private static final Map<Direction, List<Direction>> compass = new HashMap<Direction, List<Direction>>(){{
+            put(NORTH, List.of(WEST, EAST));
+            put(SOUTH, List.of(EAST, WEST));
+            put(EAST, List.of(NORTH, SOUTH));
+            put(WEST, List.of(SOUTH, NORTH));
+            put(NOTHING, List.of(NOTHING, NOTHING));
+        }};
 
         Direction(String value) {
             this.value = value;
         }
 
-        abstract Direction turnLeft();
-        abstract Direction turnRight();
+        public Direction turnLeft(){
+            return compass.get(this).get(0);
+        }
+
+        public Direction turnRight(){
+            return compass.get(this).get(1);
+        }
 
         @Override
         public String toString() {
@@ -96,31 +71,41 @@ public class MarsRover {
         if (direction == Direction.NORTH) {
             switch (command) {
                 case MOVE:
-                    yCoordinate++;
+                    xCoordinate = move(xCoordinate, 0);
+                    yCoordinate = move(yCoordinate, 1);
+                    // TODO : Abstraction in progress
+                    new Point(xCoordinate, yCoordinate);
                     break;
             }
         } else if (direction == Direction.EAST) {
             switch (command) {
                 case MOVE:
-                    xCoordinate++;
+                    xCoordinate = move(xCoordinate, 1);
+                    yCoordinate = move(yCoordinate, 0);
                     break;
             }
         } else if (direction == Direction.SOUTH) {
             switch (command) {
                 case MOVE:
-                    yCoordinate--;
+                    xCoordinate = move(xCoordinate, 0);
+                    yCoordinate = move(yCoordinate, -1);
                     break;
             }
         } else if (direction == Direction.WEST) {
             switch (command) {
                 case MOVE:
-                    xCoordinate--;
+                    xCoordinate = move(xCoordinate, -1);
+                    yCoordinate = move(yCoordinate, 0);
                     break;
             }
         }
 
       return   List.of(xCoordinate,yCoordinate,direction.value);
 
+    }
+
+    private int move(int coordinate, int step){
+        return coordinate+step;
     }
 
 
