@@ -12,16 +12,60 @@ public class MarsRover {
     }
 
     public enum Direction {
-        NORTH("N"),
-        WEST("W"),
-        EAST("E"),
-        SOUTH("S"),
-        NOTHING("");
+        NORTH("N") {
+            Direction turnRight() {
+                return EAST;
+            }
+
+            Direction turnLeft() {
+                return WEST;
+            }
+        },
+        WEST("W") {
+            Direction turnRight() {
+                return NORTH;
+            }
+
+            Direction turnLeft() {
+                return SOUTH;
+            }
+        },
+        EAST("E") {
+            Direction turnRight() {
+                return SOUTH;
+            }
+
+            Direction turnLeft() {
+                return NORTH;
+            }
+        },
+        SOUTH("S") {
+            Direction turnRight() {
+                return WEST;
+            }
+
+            Direction turnLeft() {
+                return EAST;
+            }
+        },
+        NOTHING("") {
+            Direction turnRight() {
+                return NOTHING;
+            }
+
+            Direction turnLeft() {
+                return NOTHING;
+            }
+        };
         private String value;
 
         Direction(String value) {
             this.value = value;
         }
+
+        abstract Direction turnLeft();
+        abstract Direction turnRight();
+
         @Override
         public String toString() {
             return value;
@@ -30,38 +74,6 @@ public class MarsRover {
         private static final Map<String, Direction> directions = Map.of("W", WEST, "N", NORTH, "S", SOUTH, "E", EAST);
         public static Direction from(String value) {
             return directions.getOrDefault(value, NOTHING);
-        }
-
-        private Direction turnRightFromWest() {
-            return NORTH;
-        }
-
-        private Direction turnLeftFromWest() {
-            return SOUTH;
-        }
-
-        private Direction turnRightFromEast() {
-            return SOUTH;
-        }
-
-        private Direction turnLeftFromEast() {
-            return NORTH;
-        }
-
-        private Direction turnRightFromNorth() {
-            return EAST;
-        }
-
-        private Direction turnLeftFromNoth() {
-            return WEST;
-        }
-
-        private Direction turnRightFromSouth() {
-            return WEST;
-        }
-
-        private Direction turnLeftFromSouth() {
-            return EAST;
         }
     }
 
@@ -73,50 +85,34 @@ public class MarsRover {
     private  Direction direction = Direction.NOTHING;
 
     List<?> rove(char command) {
+        switch (command) {
+            case LEFT:
+                direction = direction.turnLeft();
+                break;
+            case RIGHT:
+                direction = direction.turnRight();
+                break;
+        }
         if (direction == Direction.NORTH) {
             switch (command) {
-                case LEFT:
-                    direction = Direction.NORTH.turnLeftFromNoth();
-                    break;
-                case RIGHT:
-                    direction = Direction.NORTH.turnRightFromNorth();
-                    break;
                 case MOVE:
                     yCoordinate++;
                     break;
             }
         } else if (direction == Direction.EAST) {
             switch (command) {
-                case LEFT:
-                    direction = Direction.EAST.turnLeftFromEast();
-                    break;
-                case RIGHT:
-                    direction = Direction.EAST.turnRightFromEast();
-                    break;
                 case MOVE:
                     xCoordinate++;
                     break;
             }
         } else if (direction == Direction.SOUTH) {
             switch (command) {
-                case LEFT:
-                    direction = Direction.SOUTH.turnLeftFromSouth();
-                    break;
-                case RIGHT:
-                    direction = Direction.SOUTH.turnRightFromSouth();
-                    break;
                 case MOVE:
                     yCoordinate--;
                     break;
             }
         } else if (direction == Direction.WEST) {
             switch (command) {
-                case LEFT:
-                    direction = Direction.WEST.turnLeftFromWest();
-                    break;
-                case RIGHT:
-                    direction = Direction.WEST.turnRightFromWest();
-                    break;
                 case MOVE:
                     xCoordinate--;
                     break;
