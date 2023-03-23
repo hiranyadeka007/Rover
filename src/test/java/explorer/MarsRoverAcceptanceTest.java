@@ -23,14 +23,14 @@ public class MarsRoverAcceptanceTest {
 
         //When
         String commands = "MMRMMRMRRM";
-        List<?> position=new ArrayList<>();
+        List<?> orientation=new ArrayList<>();
         for (char command : commands.toCharArray()) {
-            position=marsRover.rove(command);
+            orientation=marsRover.rove(command);
         }
 
         //Then
-        assertEquals(5,position.get(0));
-        assertEquals(1,position.get(1));
-        assertEquals("E",position.get(2));
+        Point position = (Point) orientation.get(0);
+        assertEquals(new Point(5, 1), position);
+        assertEquals(Direction.from("E"),orientation.get(1));
     }
 }

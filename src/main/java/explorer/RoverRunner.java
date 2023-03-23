@@ -16,13 +16,14 @@ public class RoverRunner {
         String[] positions = currentPosition.split(" ");
         MarsRover marsRover = new MarsRover(new Point(Integer.valueOf(positions[0]),Integer.valueOf(positions[1])),Direction.from(positions[2]));
 
-        List<?> position=new ArrayList<>();
+        List<?> orientation = new ArrayList<>();
         for (char command : commands.toCharArray()) {
-            position=marsRover.rove(command);
+            orientation = marsRover.rove(command);
         }
 
         System.out.println("currentPosition..." + currentPosition);
         System.out.println("commands..." + commands);
-        System.out.println("newPosition..." + position.get(0) + " " + position.get(1) + " " + position.get(2));
+        Point position = (Point) orientation.get(0);
+        System.out.println("newPosition..." + position.xCoordinate + " " + position.yCoordinate + " " + orientation.get(1));
     }
 }

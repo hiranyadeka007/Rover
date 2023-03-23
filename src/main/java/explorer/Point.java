@@ -1,6 +1,26 @@
 package explorer;
 
-public class Point {
+import java.util.Objects;
+
+public final class Point {
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null || getClass() != that.getClass()) {
+            return false;
+        }
+        Point point = (Point) that;
+        return xCoordinate == point.xCoordinate && yCoordinate == point.yCoordinate;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xCoordinate, yCoordinate);
+    }
+
     @Override
     public String toString() {
         return "Point{" +
@@ -9,24 +29,15 @@ public class Point {
                 '}';
     }
 
-    private int xCoordinate;
-    private int yCoordinate;
+    public final int xCoordinate;
+    public final int yCoordinate;
 
     public Point(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
 
-    public void translate(int dx, int dy) {
-        this.xCoordinate += dx;
-        this.yCoordinate += dy;
-    }
-
-    public int getxCoordinate() {
-        return xCoordinate;
-    }
-
-    public int getyCoordinate() {
-        return yCoordinate;
+    public Point translate(int dx, int dy) {
+        return new Point(this.xCoordinate + dx, this.yCoordinate + dy);
     }
 }

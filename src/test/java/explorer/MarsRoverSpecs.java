@@ -29,15 +29,15 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.NORTH, 3, 3);
         //When
-        List<?> position=marsRover.rove('L');
+        List<?> orientation=marsRover.rove('L');
         //Then
-        thenMarsRoverShouldBeAt("W", 3, 3, position );
+        thenMarsRoverShouldBeAt("W", 3, 3, orientation );
     }
 
-    private void thenMarsRoverShouldBeAt(String direction, int xCoordinate, int yCoordinate, List<?> position) {
-        assertEquals(xCoordinate, position.get(0));
-        assertEquals(yCoordinate, position.get(1));
-        assertEquals(direction, position.get(2));
+    private void thenMarsRoverShouldBeAt(String direction, int xCoordinate, int yCoordinate, List<?> orientation) {
+        Point position = (Point) orientation.get(0);
+        assertEquals(new Point(xCoordinate, yCoordinate), position);
+        assertEquals(Direction.from(direction), orientation.get(1));
     }
 
     private MarsRover marsRoverIsAt(Direction direction, int xCoordinate, int yCoordinate) {
@@ -49,9 +49,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.NORTH, 3, 3);
         //When
-        List<?> position=marsRover.rove('R');
+        List<?> orientation=marsRover.rove('R');
         //Then
-        thenMarsRoverShouldBeAt("E",3,3,position);
+        thenMarsRoverShouldBeAt("E",3,3,orientation);
     }
 
     @Test
@@ -59,9 +59,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.NORTH,3,3);
         //When
-        List<?> position=marsRover.rove('M');
+        List<?> orientation=marsRover.rove('M');
         //Then
-        thenMarsRoverShouldBeAt("N",3,4,position);
+        thenMarsRoverShouldBeAt("N",3,4,orientation);
 
     }
 
@@ -70,9 +70,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.EAST,3,3);
         //When
-        List<?> position=marsRover.rove('L');
+        List<?> orientation=marsRover.rove('L');
         //Then
-        thenMarsRoverShouldBeAt("N",3,3,position);
+        thenMarsRoverShouldBeAt("N",3,3,orientation);
     }
 
     @Test
@@ -80,9 +80,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.EAST,3,3);
         //When
-        List<?> position=marsRover.rove('R');
+        List<?> orientation=marsRover.rove('R');
         //Then
-        thenMarsRoverShouldBeAt("S",3,3,position);
+        thenMarsRoverShouldBeAt("S",3,3,orientation);
     }
 
     @Test
@@ -90,9 +90,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.EAST,3,3);
         //When
-        List<?> position=marsRover.rove('M');
+        List<?> orientation=marsRover.rove('M');
         //Then
-        thenMarsRoverShouldBeAt("E",4,3,position);
+        thenMarsRoverShouldBeAt("E",4,3,orientation);
     }
 
     @Test
@@ -100,9 +100,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.SOUTH,3,3);
         //When
-        List<?> position=marsRover.rove('L');
+        List<?> orientation=marsRover.rove('L');
         //Then
-        thenMarsRoverShouldBeAt("E",3,3,position);
+        thenMarsRoverShouldBeAt("E",3,3,orientation);
     }
 
     @Test
@@ -110,9 +110,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.SOUTH,3,3);
         //When
-        List<?> position=marsRover.rove('R');
+        List<?> orientation=marsRover.rove('R');
         //Then
-        thenMarsRoverShouldBeAt("W",3,3,position);
+        thenMarsRoverShouldBeAt("W",3,3,orientation);
     }
 
     @Test
@@ -120,9 +120,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.SOUTH,3,3);
         //When
-        List<?> position=marsRover.rove('M');
+        List<?> orientation=marsRover.rove('M');
         //Then
-        thenMarsRoverShouldBeAt("S",3,2,position);
+        thenMarsRoverShouldBeAt("S",3,2,orientation);
     }
 
     @Test
@@ -130,9 +130,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.WEST,3,3);
         //When
-        List<?> position=marsRover.rove('L');
+        List<?> orientation=marsRover.rove('L');
         //Then
-        thenMarsRoverShouldBeAt("S",3,3,position);
+        thenMarsRoverShouldBeAt("S",3,3,orientation);
     }
 
     @Test
@@ -140,9 +140,9 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.WEST,3,3);
         //When
-        List<?> position=marsRover.rove('R');
+        List<?> orientation=marsRover.rove('R');
         //Then
-        thenMarsRoverShouldBeAt("N",3,3,position);
+        thenMarsRoverShouldBeAt("N",3,3,orientation);
     }
 
     @Test
@@ -150,8 +150,8 @@ public class MarsRoverSpecs {
         //Given
         MarsRover marsRover = marsRoverIsAt(Direction.WEST,3,3);
         //When
-        List<?> position=marsRover.rove('M');
+        List<?> orientation=marsRover.rove('M');
         //Then
-        thenMarsRoverShouldBeAt("W",2,3,position);
+        thenMarsRoverShouldBeAt("W",2,3,orientation);
     }
 }

@@ -17,7 +17,7 @@ public class MarsRover {
         EAST("E"),
         SOUTH("S"),
         NOTHING("");
-        private String value;
+        public final String value;
         private static final Map<Direction, List<?>> compass = new HashMap<Direction, List<?>>(){{
             put(NORTH, List.of(WEST, EAST, List.of(0, 1)));
             put(SOUTH, List.of(EAST, WEST, List.of(0, -1)));
@@ -41,8 +41,6 @@ public class MarsRover {
         public List<Integer> deltas(){
            return  (List<Integer>) compass.get(this).get(2);
         }
-
-
 
         @Override
         public String toString() {
@@ -71,11 +69,11 @@ public class MarsRover {
                 break;
             case MOVE:
                 List<Integer> deltas = direction.deltas();
-                position.translate(deltas.get(0), deltas.get(1));
+                position = position.translate(deltas.get(0), deltas.get(1));
                 break;
         }
 
-      return   List.of(position.getxCoordinate(),position.getyCoordinate(),direction.value);
+      return   List.of(position, direction);
 
     }
 
